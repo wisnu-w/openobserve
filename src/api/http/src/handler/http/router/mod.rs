@@ -275,6 +275,32 @@ pub async fn auth_middleware(request: Request, next: Next) -> Response {
     // Validate authentication using extracted data
     match oo_validator(&req_data, &auth_info).await {
         Ok(result) => {
+            let mut org_id = auth_info.org_id.clone();
+            if org_id.is_empty() {
+                let p = req_data.uri.path();
+                let p = p.strip_prefix("/api/").unwrap_or(p);
+                let p = p.strip_prefix('/').unwrap_or(p);
+                let cols: Vec<&str> = p.split('/').collect();
+                if cols.len() > 1 && cols[0] == "v2" {
+                    org_id = cols[1].to_string();
+                } else if !cols.is_empty() {
+                    org_id = cols[0].to_string();
+                }
+            }
+
+            if !org_id.is_empty() {
+                if openobserve_core::quota::is_quota_blocked(&org_id).await {
+                    return (
+                        axum::http::StatusCode::TOO_MANY_REQUESTS,
+                        axum::Json(serde_json::json!({
+                            "error": "Quota Full",
+                            "message": "Batas kuota harian ingestion Anda telah habis."
+                        })),
+                    )
+                        .into_response();
+                }
+            }
+
             // Insert user_id into request headers for downstream handlers
             parts.headers.insert(
                 header::HeaderName::from_static("user_id"),

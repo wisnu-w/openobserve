@@ -17,6 +17,8 @@
 
 #![recursion_limit = "256"]
 
+pub mod quota;
+
 pub mod alerts;
 #[cfg(feature = "enterprise")]
 pub mod anomaly_detection;

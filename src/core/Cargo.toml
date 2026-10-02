@@ -48,6 +48,8 @@ profiling = [
 ]
 
 [dependencies]
+redis.workspace = true
+
 db.workspace = true
 audit.workspace = true
 common.workspace = true

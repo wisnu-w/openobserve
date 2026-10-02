@@ -303,6 +303,8 @@ edition = "2024"
 license = "AGPL-3.0"
 
 [workspace.dependencies]
+redis = { version = "0.24", features = ["tokio-comp"] }
+
 pulldown-cmark = { version = "0.13", default-features = false, features = [
     "html",
 ] }
