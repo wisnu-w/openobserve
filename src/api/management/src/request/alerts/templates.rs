@@ -377,7 +377,7 @@ pub async fn delete_template_bulk(
     tag = "Templates",
     operation_id = "GetSystemTemplates",
     summary = "Get system prebuilt templates",
-    description = "Retrieves all system-defined prebuilt templates. These templates are provided by OpenObserve for common \
+    description = "Retrieves all system-defined prebuilt templates. These templates are provided by RanuObserve Engine for common \
                    notification destinations like Slack, Microsoft Teams, Email, PagerDuty, etc. System templates are read-only \
                    and serve as the foundation for prebuilt alert destinations. This endpoint returns the complete template \
                    configurations including body, type, and metadata. Requires LIST permission on templates.",

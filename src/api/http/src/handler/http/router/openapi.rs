@@ -524,7 +524,7 @@ use crate::{
     ),
     modifiers(&SecurityAddon),
     tags(
-        (name = "Meta", description = "Meta details about the OpenObserve state itself. e.g. healthz"),
+        (name = "Meta", description = "Meta details about the RanuObserve Engine state itself. e.g. healthz"),
         (name = "Auth", description = "User login authentication"),
         (name = "Logs", description = "Logs data ingestion operations"),
         (name = "Dashboards", description = "Dashboard operations"),
@@ -550,8 +550,8 @@ use crate::{
         (name = "Announcements", description = "Operator-authored announcement banners shown across organizations (enterprise)"),
     ),
     info(
-        description = "OpenObserve API documents [https://openobserve.ai/docs/](https://openobserve.ai/docs/)",
-        contact(name = "OpenObserve", email = "hello@zinclabs.io", url = "https://openobserve.ai/"),
+        description = "RanuObserve Engine API documents [https://openobserve.ai/docs/](https://openobserve.ai/docs/)",
+        contact(name = "RanuObserve Engine", email = "hello@zinclabs.io", url = "https://openobserve.ai/"),
     ),
 )]
 pub struct ApiDoc;

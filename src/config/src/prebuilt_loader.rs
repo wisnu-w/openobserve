@@ -170,7 +170,7 @@ fn convert_template_config(config: &TemplateConfig, dest_type: &str) -> Template
             title: config
                 .title
                 .clone()
-                .unwrap_or_else(|| "OpenObserve Alert".to_string()),
+                .unwrap_or_else(|| "RanuObserve Engine Alert".to_string()),
         }
     } else {
         TemplateType::Http
@@ -230,7 +230,7 @@ fn load_builtin_config() -> PrebuiltDestinationsConfig {
                 template: TemplateConfig {
                     name: "prebuilt_email".to_string(),
                     body: "<h2>[{alert_status}] {alert_name}</h2>".to_string(),
-                    title: Some("OpenObserve Alert: {alert_name}".to_string()),
+                    title: Some("RanuObserve Engine Alert: {alert_name}".to_string()),
                 },
                 credential_fields: vec![],
                 metadata: HashMap::new(),
@@ -277,7 +277,7 @@ fn load_builtin_config() -> PrebuiltDestinationsConfig {
                 }),
                 template: TemplateConfig {
                     name: "prebuilt_pagerduty".to_string(),
-                    body: r#"{"payload": {"summary": "OpenObserve [{alert_status}]: {alert_name}", "severity": "{severity}", "source": "{source}"}, "routing_key": "{routing_key}", "event_action": "trigger"}"#.to_string(),
+                    body: r#"{"payload": {"summary": "RanuObserve Engine [{alert_status}]: {alert_name}", "severity": "{severity}", "source": "{source}"}, "routing_key": "{routing_key}", "event_action": "trigger"}"#.to_string(),
                     title: None,
                 },
                 credential_fields: vec![],
@@ -989,7 +989,7 @@ mod tests {
         };
         let result = convert_template_config(&config, "email");
         match result.template_type {
-            TemplateType::Email { title } => assert_eq!(title, "OpenObserve Alert"),
+            TemplateType::Email { title } => assert_eq!(title, "RanuObserve Engine Alert"),
             _ => panic!("Expected Email template type"),
         }
     }

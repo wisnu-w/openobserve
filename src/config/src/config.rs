@@ -1153,13 +1153,13 @@ pub struct Synthetics {
         help = "Lambda function name for the network probe. Empty leaves public net-* pools to lease-based agents, which requires enterprise."
     )]
     pub lambda_net: String,
-    /// Public-facing URL of the OpenObserve API — sent to the probe as
+    /// Public-facing URL of the RanuObserve Engine API — sent to the probe as
     /// JOBAPI_ENDPOINT and used as the result-stream ingest base URL.
     /// Empty (default) falls back to ZO_WEB_URL.
     #[env_config(
         name = "ZO_SYNTHETICS_API_ENDPOINT",
         default = "",
-        help = "Probe-facing base URL for the OpenObserve API. Empty falls back to ZO_WEB_URL."
+        help = "Probe-facing base URL for the RanuObserve Engine API. Empty falls back to ZO_WEB_URL."
     )]
     pub api_endpoint: String,
     /// **Enterprise only.** Public URL of the agent install script shown in the
@@ -1168,7 +1168,7 @@ pub struct Synthetics {
     /// it in an OSS-only build has no effect.
     ///
     /// Hosted in o2-datasource (public) rather than synthetic-o2-agent
-    /// (private) — same reason install scripts for other OpenObserve components
+    /// (private) — same reason install scripts for other RanuObserve components
     /// live there (see o2-datasource/k8s/install.sh).
     #[env_config(
         name = "ZO_SYNTHETICS_INSTALL_SCRIPT_URL",

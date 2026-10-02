@@ -317,7 +317,7 @@ impl Rum {
     tag = "Meta",
     operation_id = "HealthCheck",
     summary = "System health check",
-    description = "Performs a basic health check to verify that the OpenObserve service is running and responding to \
+    description = "Performs a basic health check to verify that the RanuObserve Engine service is running and responding to \
                    requests. Returns a simple status indicator that can be used by load balancers, monitoring systems, \
                    and orchestration platforms to determine service availability and readiness.",
     responses(
