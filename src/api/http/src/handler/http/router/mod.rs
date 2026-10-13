@@ -288,7 +288,14 @@ pub async fn auth_middleware(request: Request, next: Next) -> Response {
                 }
             }
 
-            if !org_id.is_empty() && (req_data.method == Method::POST || req_data.method == Method::PUT) {
+            let path_str = req_data.uri.path();
+            let is_read_query = path_str.contains("/_search")
+                || path_str.contains("/_around")
+                || path_str.contains("/_values")
+                || path_str.contains("/prometheus")
+                || path_str.contains("/streams");
+
+            if !is_read_query && !org_id.is_empty() && (req_data.method == Method::POST || req_data.method == Method::PUT) {
                 if openobserve_core::quota::is_quota_blocked(&org_id).await {
                     return (
                         axum::http::StatusCode::TOO_MANY_REQUESTS,
