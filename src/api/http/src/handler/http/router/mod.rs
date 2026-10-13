@@ -288,7 +288,7 @@ pub async fn auth_middleware(request: Request, next: Next) -> Response {
                 }
             }
 
-            if !org_id.is_empty() {
+            if !org_id.is_empty() && (req_data.method == Method::POST || req_data.method == Method::PUT) {
                 if openobserve_core::quota::is_quota_blocked(&org_id).await {
                     return (
                         axum::http::StatusCode::TOO_MANY_REQUESTS,
